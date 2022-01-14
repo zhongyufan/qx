@@ -5,7 +5,7 @@ if (obj && obj['data'] && obj['data']['records']) {
     let records = obj['data']['records'];
 
     records.forEach(i => {
-        info['button'] = [
+        i['button'] = [
             {
                 code: 'buy_again',
                 describe: '再来一单'
