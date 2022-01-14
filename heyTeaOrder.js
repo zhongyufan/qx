@@ -7,12 +7,12 @@ if (obj && obj['data'] && obj['data']['orderInfo']) {
     info['packagePayment'] = null;
     info['orderUserRightsList'] = [];
 
-    info['button'] = [
-        {
-            code: 'buy_again',
-            describe: '再来一单'
-        }
-    ];
+//     info['button'] = [
+//         {
+//             code: 'buy_again',
+//             describe: '再来一单'
+//         }
+//     ];
 
     // 外卖
     if (info['pickup_type'] === '外卖') {
