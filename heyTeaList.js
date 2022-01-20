@@ -5,12 +5,14 @@ if (obj && obj['data'] && obj['data']['records']) {
     let records = obj['data']['records'];
 
     records.forEach(i => {
-        i['button'] = [
-            {
-                code: 'buy_again',
-                describe: '再来一单'
-            }
-        ]
+        if (i['button'].length === 0) {
+            i['button'] = [
+                {
+                    code: 'buy_again',
+                    describe: '再来一单'
+                }
+            ]
+        }
     })
 }
 

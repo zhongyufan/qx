@@ -7,18 +7,12 @@ if (obj && obj['data'] && obj['data']['orderInfo']) {
     info['packagePayment'] = null;
     info['orderUserRightsList'] = [];
 
-//     info['button'] = [
-//         {
-//             code: 'buy_again',
-//             describe: '再来一单'
-//         }
-//     ];
-
     // 外卖
     if (info['pickup_type'] === '外卖') {
-        let fee = info['deliveryDiscount']['deliveryOriginFee'];
-        info['delivery_fee'] = fee;
-        info['payment'] = Number(info['total_fee']) + Number(fee);
+        let fee = Number(info['deliveryDiscount']['deliveryOriginFee']); // 基础费用
+        let nFee = Number(info['deliveryDiscount']['deliveryNightIncreaseFee']); // 夜间加价
+        info['delivery_fee'] = fee + nFee;
+        info['payment'] = Number(info['total_fee']) + fee + nFee;
     } else {
         info['delivery_fee'] = '0.00';
         info['payment'] = info['total_fee'];
@@ -33,6 +27,14 @@ if (obj && obj['data'] && obj['data']['orderInfo']) {
     info['box_fee'] = '0.00';
     info['discount_fee'] = '0.00';
     info['coupon_fee'] = '0.00';
+
+    // 退款
+    info['button'] = [
+        {
+            code: 'apply_refund',
+            describe: '申请退款'
+        }
+    ]
 }
 
 body = JSON.stringify(obj);
