@@ -11,7 +11,7 @@ if (obj && obj['data'] && obj['data']['orders']) {
         let total = 0
 
         info.amountLabels.forEach(i => {
-            if (i.name === '配送费') {
+            if (i.name === '配送费' || i.name === '满赠优惠') {
                 arr.push(i)
             } else {
                 let val = i.value.replace(/-?¥+/, '')
