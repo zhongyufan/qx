@@ -24,17 +24,21 @@ if (obj && obj['data'] && obj['data']['orderInfo']) {
     info['spell_user_info'] = null;
 
     // 计价
-    info['box_fee'] = '0.00';
+    let bFee = Number(info['box_fee'])
+    if (bFee) info['payment'] = Number(info['payment']) + bFee
     info['discount_fee'] = '0.00';
     info['coupon_fee'] = '0.00';
 
     // 退款
-    info['button'] = [
-        {
-            code: 'apply_refund',
-            describe: '申请退款'
-        }
-    ]
+    if (!info['button'].some(i => i.code === 'apply_refund')) {
+        info['button'].push(
+            {
+                code: 'apply_refund',
+                describe: '申请退款'
+            }
+        )
+    }
+
 }
 
 body = JSON.stringify(obj);
