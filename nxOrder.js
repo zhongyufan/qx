@@ -9,6 +9,7 @@ if (obj && obj['data']) {
 
     // 处理拼单
     if (info.pieceOrderItems) {
+        info.shareOrderStatus = 'SINGLE'
         info.pieceOrderItems.reduce((prev, next) => prev.concat(next.orderItems), [])
     }
 
