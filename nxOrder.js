@@ -15,6 +15,8 @@ if (obj && obj['data']) {
 
     info.amountLabels = info.amountLabels.filter(i => key.includes(i.name))
 
+    info.amountLabels.some(i => i.name === '配送费') && (total += 5)
+
     info.amountLabels.push({
         "name": "实付",
         "value": `¥${total.toFixed(2)}`,

@@ -7,25 +7,26 @@ if (obj && obj['data'] && obj['data']['orders']) {
     orders.forEach(o => {
         let info = o;
 
-        let arr = []
+        let key = ['配送费', '满赠优惠']
         let total = 0
 
-        info.amountLabels.forEach(i => {
-            if (i.name === '配送费' || i.name === '满赠优惠') {
-                arr.push(i)
-            } else {
-                let val = i.value.replace(/-?¥+/, '')
-                total += Number(val)
-            }
+        info.orderItems.forEach(i => {
+            i.isLineAction = false
+            i.price = i.originalPrice
+            total += Number(i.totalAmount.replace('¥', ''))
         })
 
-        let fact = info.amountLabels.pop()
-        fact.value = '¥' + (total.toFixed(2))
-        arr.push(fact)
+        info.amountLabels = info.amountLabels.filter(i => key.includes(i.name))
 
-        info.amountLabels = arr
+        info.amountLabels.some(i => i.name === '配送费') && (total += 5)
+
+        info.amountLabels.push({
+            "name": "实付",
+            "value": `¥${total.toFixed(2)}`,
+            "color": "#000000",
+            "copyFlag": false
+        })
     })
-
 }
 
 body = JSON.stringify(obj);
