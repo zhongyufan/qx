@@ -13,7 +13,7 @@ if (obj && obj['data'] && obj['data']['orders']) {
         // 处理拼单
         if (info.pieceOrderItems) {
             info.shareOrderStatus = 'SINGLE'
-            info.pieceOrderItems.reduce((prev, next) => prev.concat(next.orderItems), [])
+            info.orderItems = info.pieceOrderItems.reduce((prev, next) => prev.concat(next.orderItems), [])
         }
 
         info.orderItems.forEach(i => {
