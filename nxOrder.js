@@ -7,6 +7,11 @@ if (obj && obj['data']) {
     let key = ['配送费', '满赠优惠']
     let total = 0
 
+    // 处理拼单
+    if (info.pieceOrderItems) {
+        info.pieceOrderItems.reduce((prev, next) => prev.concat(next.orderItems), [])
+    }
+
     info.orderItems.forEach(i => {
         i.isLineAction = false
         i.price = i.originalPrice
