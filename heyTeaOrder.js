@@ -4,7 +4,7 @@ var obj = JSON.parse(body);
 if (obj && obj['data'] && obj['data']['orderInfo']) {
     let info = obj['data']['orderInfo'];
     info['activity'] = [];
-    info['packagePayment'] = null;
+    // info['packagePayment'] = null;
     info['orderUserRightsList'] = [];
 
     // 外卖
